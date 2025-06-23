@@ -8,38 +8,37 @@ export default function Home() {
   const [result, setResult] = useState<string | null>(null)
   const [input, setInput] = useState('')
   const [intArray, setIntArray] = useState<number[]>([])
+    const [operationCount, setOperationCount] = useState<number | null>(null);
 
-  function quickSort(array: Array<number>){
-    if(array.length <= 1){
-      return array
-    }
-    const smallHalf = []
-    const bigHalf = []
-    const equal = []
-
-    const pivot = array[Math.floor(Math.random()*array.length)]
-
-    for(let i = 0; i < array.length; i++){
-      if(array[i] < pivot){
-        smallHalf.push(array[i])
-      } else if (array[i] === pivot) {
-        equal.push(array[i])
+  function GnomeSort(array: Array<number>){
+    let operationCount = 0
+    let i = 0;
+    operationCount++
+    while(i < array.length){      
+      if(i === 0 || array[i] >= array[i-1]){
+        operationCount++
+        i++
       } else {
-        bigHalf.push(array[i])
+        const temp = array[i]
+        array[i] = array[i-1]
+        array[i-1] = temp
+        operationCount++
+        i--
       }
     }
-    const sortedSmall: Array<number> = quickSort(smallHalf)
-    const sortedBig: Array<number> = quickSort(bigHalf)
-    return [...sortedSmall, ...equal, ...sortedBig ]
+    return {sortedArray: array, operationCount: operationCount};
   }
 
   function handleClick(){
     const parsedArray = input.split(',').map(e => parseInt(e.trim()), 10).filter(num => !isNaN(num))
     setIntArray(parsedArray)
-    const sortedArray = quickSort([...parsedArray])
+    const { sortedArray, operationCount: opCount } = GnomeSort([...parsedArray])
     if (sortedArray){
       setResult(sortedArray.join(','))
+      setOperationCount(opCount)
     } else {
+      setResult(null);
+      setOperationCount(null);
       return
     }
   }
@@ -52,7 +51,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Quick Sort</h1>
+      <h1>Gnome Sort</h1>
       <p>Input Array: </p>
       <p>{intArray.join(',')}</p>
       <br/>
@@ -70,6 +69,8 @@ export default function Home() {
       <button onClick={handleClick} className="">Sort!</button>
       <br />
       <p>Result: {result}</p>
+      <br/>
+      <p>Operations for answer: {operationCount}</p>
     </div>
   );
 }
