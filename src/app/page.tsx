@@ -17,7 +17,7 @@ export default function Home() {
     const bigHalf = []
     const equal = []
 
-    const pivot = array[Math.floor(Math.random()*array.length)]
+    const pivot = array[Math.floor(Math.random() * array.length)]
 
     for(let i = 0; i < array.length; i++){
       if(array[i] < pivot){
