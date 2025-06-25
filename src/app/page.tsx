@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function Home() {
   const [result, setResult] = useState<string | null>(null)
-  const [input, setInput] = useState('')
+  const [input] = useState('')
   const [intArray, setIntArray] = useState<number[]>([])
 
   function quickSort(array: Array<number>){
@@ -43,32 +43,22 @@ export default function Home() {
     }
   }
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-  if (event.key === 'Enter') {
-    handleClick();
-  }
-}
 
   return (
-    <div>
-      <h1>Quick Sort</h1>
-      <p>Input Array: </p>
-      <p>{intArray.join(',')}</p>
-      <br/>
+    <main className='max-w-5xl mx-auto p-4 md:p-10'>
       <div>
-        Input:  
-        <input 
-          value={input} 
-          onKeyDown={handleKeyDown} 
-          onChange={(e) => setInput(e.target.value)}
-          className="bg-white rounded text-black"
-        >
-        </input>
+        <h1>Quick Sort</h1>
+        <p>Input Array: </p>
+        <p>{intArray.join(',')}</p>
+        <br/>
+        <div>
+          Input:  
+        </div>
+        <br />
+        <button onClick={handleClick} className="">Sort!</button>
+        <br />
+        <p>Result: {result}</p>
       </div>
-      <br />
-      <button onClick={handleClick} className="">Sort!</button>
-      <br />
-      <p>Result: {result}</p>
-    </div>
+    </main>
   );
 }
