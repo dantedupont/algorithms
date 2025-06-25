@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FFF7F8;
+  --background: #FFFAFA;
   --foreground: #3F3047;
   --rosered: #CF1259;
   --mustard: #FED766;
@@ -11,7 +11,7 @@
 @theme {
   --color-rosered: var(--rosered);
   --color-mustard: var(--mustard);
-  --color-mustard: var(--steelblue)
+  --color-steelblue: var(--steelblue)
 }
 
 @theme inline {
@@ -20,6 +20,13 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+@layer base{
+  h1 {
+    @apply text-4xl text-foreground font-bold;
+  }
+}
+
 /*commenting out until light mode done*/
 /* @media (prefers-color-scheme: dark) {
   :root {

@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import React from 'react'
 
-
 export default function Home() {
   const [result, setResult] = useState<string | null>(null)
   const [input, setInput] = useState('')
