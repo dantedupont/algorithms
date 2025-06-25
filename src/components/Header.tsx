@@ -13,7 +13,8 @@ export default function Header(){
 
     const sortingLinks = [
         { href: '/', label: 'Quick Sort'},
-        { href: '/gnomesort', label: 'Gnome Sort'}
+        { href: '/gnomesort', label: 'Gnome Sort'},
+        { href: '/miraclesort', label: 'Miracle Sort'}
     ]
 
     useEffect(() => {
